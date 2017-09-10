@@ -40,7 +40,6 @@ void Rectangle::moveOutOf(const Rectangle& solid) {
     else if (minDist == rightDist) x += rightDist;
 }
 
-
 void Rectangle::update() {
     if(!frozen) {
 

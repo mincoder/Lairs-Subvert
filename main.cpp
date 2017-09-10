@@ -125,10 +125,12 @@ int main(int, char const**)
             if (event.type == Event::KeyPressed && event.key.code == Keyboard::Right) {
                 player.setXVel(1);
             }
-            if (event.type == Event::KeyReleased && (event.key.code == Keyboard::Left || event.key.code == Keyboard::Right)) {
+            if (event.type == Event::KeyReleased && event.key.code == Keyboard::Left && player.Xvel < 0) {
+                player.setXVel(0);
+			}
+            if (event.type == Event::KeyReleased && event.key.code == Keyboard::Right && player.Xvel > 0) {
                 player.setXVel(0);
             }
-            
         }
 
         // Update the window
