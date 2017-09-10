@@ -41,17 +41,17 @@ void Rectangle::moveOutOf(const Rectangle& solid) {
 }
 
 void Rectangle::update() {
-    if(!frozen) {
+    if (!frozen) {
 
-        x+=Xvel*elapsed.asSeconds()*400;
-        float tmpYForce=Yvel;
-        if(Yvel<=-(gravity*8)) {
-            tmpYForce=-gravity*8;
+        x += Xvel * elapsed.asSeconds() * 400;
+        float tmpYForce = Yvel;
+        if (Yvel <= -gravity*8) {
+            tmpYForce = -gravity*8;
         }
-        y+=tmpYForce*elapsed.asSeconds()*400;
+        y += tmpYForce * elapsed.asSeconds() * 400;
 
-        if(Yvel<=gravity*2)
-            Yvel+=gravity*elapsed.asSeconds()*400;
+        if (Yvel <= gravity*2)
+            Yvel += gravity * elapsed.asSeconds() * 400;
 
     }
 }
