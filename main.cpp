@@ -23,6 +23,7 @@
 #include "ResourcePath.hpp"
 #include "rectangle.hpp"
 #include "entity.hpp"
+#include "globals.h"
 
 using namespace sf;
 
@@ -30,9 +31,7 @@ class Player {
 
 };
 
-Time elapsed;
-
-float unit=0.0;
+float unit = 0.0;
 
 int main(int, char const**)
 {
@@ -83,6 +82,7 @@ int main(int, char const**)
     // Start the game loop
 
     Clock clock;
+    Time lastUpdate;
     while (window.isOpen()) {
 
         // Process events
@@ -115,14 +115,16 @@ int main(int, char const**)
             }
         }
 
-        elapsed = clock.restart();
+        while (lastUpdate + seconds(frameTime) <= clock.getElapsedTime()) {
+            lastUpdate += seconds(frameTime);
 
-        player.update();
+            player.update();
 
-        for(int i=0;i<50;i++) {
-            for(int j=0;j<50;j++) {
-                world[i][j]->update();
-                player.BufferedCollider(*world[i][j]);
+            for(int i=0;i<50;i++) {
+                for(int j=0;j<50;j++) {
+                    world[i][j]->update();
+                    player.BufferedCollider(*world[i][j]);
+                }
             }
         }
 

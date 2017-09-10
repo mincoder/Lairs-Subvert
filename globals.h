@@ -11,7 +11,7 @@
 
 #include <SFML/Graphics.hpp>
 
-extern sf::Time elapsed;
+const float frameTime = 1.0 / 60 / 4;
 extern float unit;
 
 #endif /* globals_h */
