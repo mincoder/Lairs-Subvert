@@ -78,7 +78,6 @@ int main(int, char const**)
     
     player.setYVel(-15);
     
->>>>>>> Stashed changes
     const Rectangle floor(200,400,800,100,true);
 
     // Start the game loop
