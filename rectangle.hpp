@@ -45,9 +45,9 @@ struct Rectangle {
 		x(x), y(y), width(width), height(height), frozen(frozen)
 	{}
     
-    bool collide(const Rectangle& collider) const;
+    bool collidesWith(const Rectangle& other) const;
     
-    void collideSolid(const Rectangle& collider);
+    void moveOutOf(const Rectangle& solid);
 
     void update();
 };

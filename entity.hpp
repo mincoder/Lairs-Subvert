@@ -30,7 +30,7 @@ struct Entity : public Rectangle {
     void operator=(const Entity& other) = delete;
 
     
-    void BufferedCollider(Rectangle collider);
+    void BufferedCollider(const Rectangle& collider);
     
     void BufferedUpdate();
     
