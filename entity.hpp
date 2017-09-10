@@ -32,8 +32,6 @@ struct Entity : public Rectangle {
 
     void BufferedCollider(const Rectangle& collider);
 
-    void BufferedUpdate();
-
     void render(sf::RenderWindow& window);
 
     // entity() : Rectangle(0,0,0,0,true){};

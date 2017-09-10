@@ -38,11 +38,7 @@ void Entity::BufferedCollider(const Rectangle& collider) {
 
 void Entity::render(sf::RenderWindow& window) {
     if (visible) {
+        sprite.setPosition(x, y);
         window.draw(sprite);
     }
-}
-
-void Entity::BufferedUpdate() {
-    sprite.setPosition(x, y);
-    update();
 }

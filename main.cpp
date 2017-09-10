@@ -89,17 +89,17 @@ int main(int, char const**)
         
         window.draw(backgroundsprite);
         
-        player.BufferedUpdate();
+        player.update();
         
         for(int i=0;i<50;i++) {
             for(int j=0;j<50;j++) {
                 player.BufferedCollider((*world[i][j]));
-                world[i][j]->BufferedUpdate();
+                world[i][j]->update();
                 world[i][j]->render(window);
             }
         }
-        
-        window.draw(player.sprite);
+
+        player.render(window);
         
         // Process events
         Event event;
