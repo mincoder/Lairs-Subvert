@@ -14,8 +14,6 @@
 // function `resourcePath()` from ResourcePath.hpp
 //
 
-// $(LOCAL_APPS_DIR)
-
 #include <iostream>
 #include <vector>
 #include <SFML/Audio.hpp>
@@ -46,7 +44,8 @@ int main(int, char const**)
     backgroundsprite.setScale(unit*2, unit*2);
     
     // Create the main window
-    RenderWindow window(VideoMode(1440, 900), "Lairs Subvert",Style::Fullscreen);
+    // RenderWindow window(VideoMode(1440, 900), "Lairs Subvert",Style::Fullscreen);
+    RenderWindow window(VideoMode(1440, 900), "Lairs Subvert");
     
     Entity player(50,350,50,100,false,true,"player.png",0,true);
     
@@ -127,7 +126,7 @@ int main(int, char const**)
             }
             if (event.type == Event::KeyReleased && event.key.code == Keyboard::Left && player.Xvel < 0) {
                 player.setXVel(0);
-			}
+            }
             if (event.type == Event::KeyReleased && event.key.code == Keyboard::Right && player.Xvel > 0) {
                 player.setXVel(0);
             }

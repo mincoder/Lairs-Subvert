@@ -16,24 +16,24 @@
 #include "globals.h"
 
 Entity::Entity(int x, int y, int width, int height, bool frozen,
-		bool solid, string imgpath, int identification, bool visible) :
-	Rectangle(x, y, width, height, frozen),
-	solid(solid), id(identification), visible(visible)
+        bool solid, string imgpath, int identification, bool visible) :
+    Rectangle(x, y, width, height, frozen),
+    solid(solid), id(identification), visible(visible)
 {
-	path = imgpath;
-	if (!spritetexture.loadFromFile(imgpath)) {
-		cout << "Error: could not load file: " << imgpath << endl;
-		abort();
-	} else  {
-		sprite.setTexture(spritetexture);
-	}
-	sprite.setScale(unit,unit);
+    path = imgpath;
+    if (!spritetexture.loadFromFile(imgpath)) {
+        cout << "Error: could not load file: " << imgpath << endl;
+        abort();
+    } else  {
+        sprite.setTexture(spritetexture);
+    }
+    sprite.setScale(unit,unit);
 }
 
 void Entity::BufferedCollider(const Rectangle& collider) {
-	if (solid) {
-		moveOutOf(collider);
-	}
+    if (solid) {
+        moveOutOf(collider);
+    }
 }
 
 void Entity::render(sf::RenderWindow& window) {

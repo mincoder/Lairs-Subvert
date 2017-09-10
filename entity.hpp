@@ -15,27 +15,27 @@
 using namespace std;
 
 struct Entity : public Rectangle {
-    
+
     bool solid;
     string path;
     int id;
     sf::Texture spritetexture;
     sf::Sprite sprite;
     bool visible;
-    
+
     Entity(int x, int y, int width, int height, bool frozen,
             bool solid, string imgpath, int identification, bool visible);
     //entity(const entity& other) : spritetexture(other.spritetexture), sprite(spritetexture),
     Entity(const Entity& other) = delete;
     void operator=(const Entity& other) = delete;
 
-    
+
     void BufferedCollider(const Rectangle& collider);
-    
+
     void BufferedUpdate();
-    
+
     void render(sf::RenderWindow& window);
-    
+
     // entity() : Rectangle(0,0,0,0,true){};
 };
 
