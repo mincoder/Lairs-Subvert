@@ -12,73 +12,11 @@
 
 using std::abs;
 
-bool Rectangle::collide(const Rectangle& collider) const {
-    if( (collider.x+collider.width<=x+width) && (collider.x+collider.width>=x) ) {
-        
-        if( (collider.y+collider.height<=y+height) && (collider.y+collider.height>=y) ) {
-            
-            return true;
-            
-        }
-        
-        if( (collider.y<=y+height) && (collider.y>=y) ) {
-            
-            return true;
-            
-        }
-        if( (collider.y<=y) && (collider.y>=y+height) ) {
-            
-            return true;
-            
-        }
-        
-    }
-    
-    if( (collider.x<=x+width) && (collider.x>=x) ) {
-        
-        if( (collider.y+collider.height<=y+height) && (collider.y+collider.height>=y) ) {
-            
-            return true;
-            
-        }
-        
-        if( (collider.y<=y+height) && (collider.y>=y) ) {
-            
-            return true;
-            
-        }
-        if( (collider.y<=y) && (collider.y>=y+height) ) {
-            
-            return true;
-            
-        }
-        
-    }
-    
-    if(collider.x<=x&&collider.x>=x+width) {
-        if( (collider.y+collider.height<=y+height) && (collider.y+collider.height>=y) ) {
-            
-            return true;
-            
-        }
-        
-        if( (collider.y<=y+height) && (collider.y>=y) ) {
-            
-            return true;
-            
-        }
-        if( (collider.y<=y) && (collider.y>=y+height) ) {
-            
-            return true;
-            
-        }
-    }
-    
-    if(x==collider.x&&y==collider.y) {
-        return true;
-    }
-    
-    return false;
+bool Rectangle::collide(const Rectangle& other) const {
+    return x <= other.x + other.width &&
+        other.x <= x + width &&
+        y <= other.y + other.height &&
+        other.y <= y + height;
 }
 
 
