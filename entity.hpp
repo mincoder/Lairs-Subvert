@@ -14,19 +14,20 @@
 
 using namespace std;
 
-struct entity : public Rectangle{
+struct Entity : public Rectangle {
     
-    bool solid=true;
+    bool solid;
     string path;
     int id;
     sf::Texture spritetexture;
     sf::Sprite sprite;
     bool visible;
     
-    entity(int a, int b, int w, int h, bool f,bool collideable, string imgpath, int identidication, bool v);
+    Entity(int x, int y, int width, int height, bool frozen,
+            bool solid, string imgpath, int identification, bool visible);
     //entity(const entity& other) : spritetexture(other.spritetexture), sprite(spritetexture),
-    entity(const entity& other) = delete;
-    void operator=(const entity& other) = delete;
+    Entity(const Entity& other) = delete;
+    void operator=(const Entity& other) = delete;
 
     
     void BufferedCollider(Rectangle collider);

@@ -128,15 +128,15 @@ void Rectangle::collideSolid(const Rectangle& collider) {
 void Rectangle::update() {
     if(!frozen) {
         
-        x+=Xforce*elapsed.asSeconds()*400;
-        float tmpYForce=Yforce;
-        if(Yforce<=-(gravity*8)) {
+        x+=Xvel*elapsed.asSeconds()*400;
+        float tmpYForce=Yvel;
+        if(Yvel<=-(gravity*8)) {
             tmpYForce=-gravity*8;
         }
         y+=tmpYForce*elapsed.asSeconds()*400;
         
-        if(Yforce<=gravity*2)
-            Yforce+=gravity*elapsed.asSeconds()*400;
+        if(Yvel<=gravity*2)
+            Yvel+=gravity*elapsed.asSeconds()*400;
         
     }
 }

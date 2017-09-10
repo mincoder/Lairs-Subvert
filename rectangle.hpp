@@ -19,36 +19,31 @@ struct Rectangle {
     int width;
     int height;
     
-    //Forces
-    float Xforce=0;
-    float Yforce=0;
+    //Velocities
+    float Xvel=0;
+    float Yvel=0;
     
     float gravity=0.13f;
     
     //Bools
     bool frozen;
     
-    void addForce(float a, float b) {
-        Xforce+=a;
-        Yforce+=b;
+    void addVel(float x, float y) {
+        Xvel += x;
+        Yvel += y;
     }
     
-    void setXForce(float a) {
-        Xforce=a;
+    void setXVel(float vel) {
+        Xvel = vel;
     }
     
-    void setYForce(float a) {
-        Yforce=a;
+    void setYVel(float vel) {
+        Yvel = vel;
     }
     
-    Rectangle(int a, int b, int w, int h, bool f) {
-        x=a;
-        y=b;
-        width=w;
-        height=h;
-        frozen=f;
-        
-    }
+    Rectangle(int x, int y, int width, int height, bool frozen) :
+		x(x), y(y), width(width), height(height), frozen(frozen)
+	{}
     
     bool collide(const Rectangle& collider) const;
     

@@ -46,43 +46,39 @@ int main(int, char const**)
     // Create the main window
     RenderWindow window(VideoMode(1440, 900), "Lairs Subvert",Style::Fullscreen);
     
-    entity player(50,350,50,100,false,true,"player.png",0,true);
+    Entity player(50,350,50,100,false,true,"player.png",0,true);
     
-    //entity world[20][20];
-    std::vector<std::vector<entity*>> world(50);
+    std::vector<std::vector<Entity*>> world(50);
     
     for(int i=0;i<50;i++) {
-        //world[i].reserve(20);
         for(int j=0;j<50;j++) {
-            world[(size_t)i].push_back(new entity(i*50,j*50+450,50,50,true,true,"dirt.png",0,true));
+            world[(size_t)i].push_back(new Entity(i*50,j*50+450,50,50,true,true,"dirt.png",0,true));
         }
     }
     
     for(int i=0;i<50;i++) {
         if(!(i>10&&i<26)) {
-            world[(size_t)i][0] = new entity(i*50,450,50,50,true,true,"grass.png",1,true);
+            world[(size_t)i][0] = new Entity(i*50,450,50,50,true,true,"grass.png",1,true);
         } else {
-            world[(size_t)i][0] = new entity(i*50,450,50,50,false,false,"grass.png",1,false);
+            world[(size_t)i][0] = new Entity(i*50,450,50,50,false,false,"grass.png",1,false);
         }
     }
     
     for(int i=0;i<50;i++) {
         if(i>10&&i<26) {
-            world[(size_t)i][1] = new entity(i*50,500,50,50,true,true,"grass.png",1,true);
+            world[(size_t)i][1] = new Entity(i*50,500,50,50,true,true,"grass.png",1,true);
         } else {
-            world[(size_t)i][1] = new entity(i*50,500,50,50,true,true,"dirt.png",1,true);
+            world[(size_t)i][1] = new Entity(i*50,500,50,50,true,true,"dirt.png",1,true);
         }
     }
     
-    player.setYForce(-5);
+    player.setYVel(-5);
     
-    //entity collider(200,200,50,50,false,true,"/Users/Will/Desktop/XCode/Lairs Subvert/Lairs Subvert/grass.png",0);
     const Rectangle floor(200,400,800,100,true);
     
     // Start the game loop
     
     Clock clock;
-    int d = 0;
     while (window.isOpen())
     {
         
@@ -119,16 +115,16 @@ int main(int, char const**)
                 window.close();
             }
             if (event.type == Event::KeyPressed && event.key.code == Keyboard::Space) {
-                player.setYForce(-25);
+                player.setYVel(-25);
             }
             if (event.type == Event::KeyPressed && event.key.code == Keyboard::Left) {
-                player.setXForce(-1);
+                player.setXVel(-1);
             }
             if (event.type == Event::KeyPressed && event.key.code == Keyboard::Right) {
-                player.setXForce(1);
+                player.setXVel(1);
             }
             if (event.type == Event::KeyReleased && (event.key.code == Keyboard::Left || event.key.code == Keyboard::Right)) {
-                player.setXForce(0);
+                player.setXVel(0);
             }
             
         }

@@ -15,32 +15,34 @@
 #include "rectangle.hpp"
 #include "globals.h"
 
-entity::entity(int a, int b, int w, int h, bool f,bool collideable, string imgpath, int identidication, bool v) : Rectangle(a,b,w,h,f) {
-        solid = collideable;
-        path=imgpath;
-        id=identidication;
-        if (!spritetexture.loadFromFile(imgpath)) {
-            cout << "Error could not load file: " << imgpath << endl;
-        } else  {
-            sprite.setTexture(spritetexture);
-        }
-        sprite.setScale(unit,unit);
-        visible=v;
+Entity::Entity(int x, int y, int width, int height, bool frozen,
+		bool solid, string imgpath, int identification, bool visible) :
+	Rectangle(x, y, width, height, frozen),
+	solid(solid), id(identification), visible(visible)
+{
+	path = imgpath;
+	if (!spritetexture.loadFromFile(imgpath)) {
+		cout << "Error: could not load file: " << imgpath << endl;
+		abort();
+	} else  {
+		sprite.setTexture(spritetexture);
+	}
+	sprite.setScale(unit,unit);
 }
 
-void entity::BufferedCollider(Rectangle collider) {
-        if(solid) {
-            collideSolid(collider);
-        }
+void Entity::BufferedCollider(Rectangle collider) {
+	if(solid) {
+		collideSolid(collider);
+	}
 }
 
-void entity::render(sf::RenderWindow& window) {
+void Entity::render(sf::RenderWindow& window) {
     if(visible) {
         window.draw(sprite);
     }
 }
 
-void entity::BufferedUpdate() {
+void Entity::BufferedUpdate() {
     sprite.setPosition(x, y);
     update();
 }
