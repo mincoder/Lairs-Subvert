@@ -74,9 +74,11 @@ int main(int, char const**)
             world[(size_t)i][1] = new Entity(i*50,500,50,50,true,true,"dirt.png",1,true);
         }
     }
-
     player.setYVel(-5);
-
+    
+    player.setYVel(-15);
+    
+>>>>>>> Stashed changes
     const Rectangle floor(200,400,800,100,true);
 
     // Start the game loop
