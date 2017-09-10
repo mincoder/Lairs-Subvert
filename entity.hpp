@@ -30,7 +30,7 @@ struct Entity : public Rectangle {
     void operator=(const Entity& other) = delete;
 
 
-    void BufferedCollider(const Rectangle& collider);
+    Rectangle::MoveStop BufferedCollider(const Rectangle& collider);
 
     void render(sf::RenderWindow& window);
 

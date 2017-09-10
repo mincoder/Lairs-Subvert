@@ -30,10 +30,11 @@ Entity::Entity(int x, int y, int width, int height, bool frozen,
     sprite.setScale(unit,unit);
 }
 
-void Entity::BufferedCollider(const Rectangle& collider) {
+Rectangle::MoveStop Entity::BufferedCollider(const Rectangle& collider) {
     if (solid) {
-        moveOutOf(collider);
+        return moveOutOf(collider);
     }
+    return Rectangle::MoveStop::Free;
 }
 
 void Entity::render(sf::RenderWindow& window) {

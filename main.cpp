@@ -73,13 +73,15 @@ int main(int, char const**)
             world[(size_t)i][1] = new Entity(i*50,500,50,50,true,true,"dirt.png",1,true);
         }
     }
-    player.setYVel(-5);
+    // player.setYVel(-5);
     
-    player.setYVel(-15);
+    // player.setYVel(-15);
     
     const Rectangle floor(200,400,800,100,true);
 
     // Start the game loop
+
+    bool playerOnFloor = true;
 
     Clock clock;
     Time lastUpdate;
@@ -98,8 +100,8 @@ int main(int, char const**)
             if (event.type == Event::KeyPressed && event.key.code == Keyboard::Escape) {
                 window.close();
             }
-            if (event.type == Event::KeyPressed && event.key.code == Keyboard::Space) {
-                player.setYVel(-25);
+            if (event.type == Event::KeyPressed && event.key.code == Keyboard::Space && playerOnFloor) {
+                player.setYVel(-2.5);
             }
             if (event.type == Event::KeyPressed && event.key.code == Keyboard::Left) {
                 player.setXVel(-1);
@@ -118,13 +120,23 @@ int main(int, char const**)
         while (lastUpdate + seconds(frameTime) <= clock.getElapsedTime()) {
             lastUpdate += seconds(frameTime);
 
+            playerOnFloor = false;
             player.update();
 
+            Rectangle::MoveStop stop = Rectangle::MoveStop::Free;
             for(int i=0;i<50;i++) {
                 for(int j=0;j<50;j++) {
                     world[i][j]->update();
-                    player.BufferedCollider(*world[i][j]);
+                    Rectangle::MoveStop s = player.BufferedCollider(*world[i][j]);
+                    stop = Rectangle::combineStops(stop, s);
                 }
+            }
+
+            if (stop == Rectangle::MoveStop::StopY) {
+                // Hit ground or roof
+                // Let's pretend ground and set the floor flag
+                player.Yvel = 0;
+                playerOnFloor = true;
             }
         }
 

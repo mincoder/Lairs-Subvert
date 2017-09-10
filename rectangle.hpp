@@ -12,6 +12,13 @@
 #include <stdio.h>
 
 struct Rectangle {
+
+    enum class MoveStop {
+        Free, StopX, StopY
+    };
+
+    // Compute the most important move stop, given different ones.
+    static MoveStop combineStops(MoveStop a, MoveStop b);
     
     //Basic Display Info
     float x;
@@ -23,7 +30,7 @@ struct Rectangle {
     float Xvel=0;
     float Yvel=0;
     
-    float gravity=0.13f;
+    float gravity = 0.013f;
     
     //Bools
     bool frozen;
@@ -47,7 +54,7 @@ struct Rectangle {
     
     bool collidesWith(const Rectangle& other) const;
     
-    void moveOutOf(const Rectangle& solid);
+    MoveStop moveOutOf(const Rectangle& solid);
 
     void update();
 };

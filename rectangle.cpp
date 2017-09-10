@@ -14,6 +14,19 @@
 using std::abs;
 using std::min;
 
+Rectangle::MoveStop Rectangle::combineStops(Rectangle::MoveStop a, Rectangle::MoveStop b) {
+    if (a == MoveStop::Free) {
+        return b;
+    }
+    if (b == MoveStop::Free) {
+        return a;
+    }
+    if (a == MoveStop::StopX) {
+        return b;
+    }
+    return a;
+}
+
 bool Rectangle::collidesWith(const Rectangle& other) const {
     return x <= other.x + other.width &&
         other.x <= x + width &&
@@ -21,9 +34,9 @@ bool Rectangle::collidesWith(const Rectangle& other) const {
         other.y <= y + height;
 }
 
-void Rectangle::moveOutOf(const Rectangle& solid) {
+Rectangle::MoveStop Rectangle::moveOutOf(const Rectangle& solid) {
     if (!collidesWith(solid) || frozen) {
-        return;
+        return MoveStop::Free;
     }
 
     int topDist = y + height - solid.y;
@@ -34,24 +47,38 @@ void Rectangle::moveOutOf(const Rectangle& solid) {
 
     int minDist = min(min(topDist, bottomDist), min(leftDist, rightDist));
 
-    if (minDist == topDist) y -= topDist;
-    else if (minDist == bottomDist) y += bottomDist;
-    else if (minDist == leftDist) x -= leftDist;
-    else if (minDist == rightDist) x += rightDist;
+    if (minDist == topDist) {
+        y -= topDist;
+        return MoveStop::StopY;
+    } else if (minDist == bottomDist) {
+        y += bottomDist;
+        return MoveStop::StopY;
+    } else if (minDist == leftDist) {
+        x -= leftDist;
+        return MoveStop::StopX;
+    } else if (minDist == rightDist) {
+        x += rightDist;
+        return MoveStop::StopX;
+    }
+    return MoveStop::Free;
 }
 
 void Rectangle::update() {
-    if (!frozen) {
+    if (frozen) return;
 
-        x += Xvel * frameTime * 400;
-        float tmpYForce = Yvel;
-        if (Yvel <= -gravity*8) {
-            tmpYForce = -gravity*8;
-        }
-        y += tmpYForce * frameTime * 400;
+    x += Xvel * frameTime * 400;
 
-        if (Yvel <= gravity*2)
-            Yvel += gravity * frameTime * 400;
+    Yvel += gravity;
+    y += Yvel;
 
+    /*
+    float tmpYForce = Yvel;
+    if (Yvel <= -gravity*8) {
+        tmpYForce = -gravity*8;
     }
+    y += tmpYForce * frameTime * 400;
+
+    if (Yvel <= gravity*2)
+        Yvel += gravity * frameTime * 400;
+        */
 }
