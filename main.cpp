@@ -39,14 +39,14 @@ int main(int, char const**)
     
     Sprite backgroundsprite;
     Texture backgroundtexture;
-    backgroundtexture.loadFromFile("/Users/Will/Desktop/XCode/Lairs Subvert/Lairs Subvert/background.png");
+    backgroundtexture.loadFromFile("background.png");
     backgroundsprite.setTexture(backgroundtexture);
     backgroundsprite.setScale(unit*2, unit*2);
     
     // Create the main window
     RenderWindow window(VideoMode(1440, 900), "Lairs Subvert",Style::Fullscreen);
     
-    entity player(50,350,50,100,false,true,"/Users/Will/Desktop/XCode/Lairs Subvert/Lairs Subvert/player.png",0,true);
+    entity player(50,350,50,100,false,true,"player.png",0,true);
     
     //entity world[20][20];
     std::vector<std::vector<entity*>> world(50);
@@ -54,23 +54,23 @@ int main(int, char const**)
     for(int i=0;i<50;i++) {
         //world[i].reserve(20);
         for(int j=0;j<50;j++) {
-            world[(size_t)i].push_back(new entity(i*50,j*50+450,50,50,true,true,"/Users/Will/Desktop/XCode/Lairs Subvert/Lairs Subvert/dirt.png",0,true));
+            world[(size_t)i].push_back(new entity(i*50,j*50+450,50,50,true,true,"dirt.png",0,true));
         }
     }
     
     for(int i=0;i<50;i++) {
         if(!(i>10&&i<26)) {
-            world[(size_t)i][0] = new entity(i*50,450,50,50,true,true,"/Users/Will/Desktop/XCode/Lairs Subvert/Lairs Subvert/grass.png",1,true);
+            world[(size_t)i][0] = new entity(i*50,450,50,50,true,true,"grass.png",1,true);
         } else {
-            world[(size_t)i][0] = new entity(i*50,450,50,50,false,false,"/Users/Will/Desktop/XCode/Lairs Subvert/Lairs Subvert/grass.png",1,false);
+            world[(size_t)i][0] = new entity(i*50,450,50,50,false,false,"grass.png",1,false);
         }
     }
     
     for(int i=0;i<50;i++) {
         if(i>10&&i<26) {
-            world[(size_t)i][1] = new entity(i*50,500,50,50,true,true,"/Users/Will/Desktop/XCode/Lairs Subvert/Lairs Subvert/grass.png",1,true);
+            world[(size_t)i][1] = new entity(i*50,500,50,50,true,true,"grass.png",1,true);
         } else {
-            world[(size_t)i][1] = new entity(i*50,500,50,50,true,true,"/Users/Will/Desktop/XCode/Lairs Subvert/Lairs Subvert/dirt.png",1,true);
+            world[(size_t)i][1] = new entity(i*50,500,50,50,true,true,"dirt.png",1,true);
         }
     }
     
