@@ -14,6 +14,8 @@
 // function `resourcePath()` from ResourcePath.hpp
 //
 
+// $(LOCAL_APPS_DIR)
+
 #include <iostream>
 #include <vector>
 #include <SFML/Audio.hpp>
