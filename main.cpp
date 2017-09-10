@@ -29,7 +29,9 @@ using namespace sf;
 class Player {
 
 };
+
 Time elapsed;
+
 float unit=0.0;
 
 int main(int, char const**)
@@ -44,8 +46,8 @@ int main(int, char const**)
     backgroundsprite.setScale(unit*2, unit*2);
 
     // Create the main window
-    // RenderWindow window(VideoMode(1440, 900), "Lairs Subvert",Style::Fullscreen);
-    RenderWindow window(VideoMode(1440, 900), "Lairs Subvert");
+    RenderWindow window(VideoMode(1440, 900), "Lairs Subvert",Style::Fullscreen);
+    // RenderWindow window(VideoMode(1440, 900), "Lairs Subvert");
 
     Entity player(50,350,50,100,false,true,"player.png",0,true);
 
